@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .inputData input {
+            margin-left: 9em;
+            
+        }
+        .inputData label {
+            position: absolute;
+        
+        }
+        .inputData {
+            margin-bottom: 10px;
+        }
+        .error{
+            color:red;
+            
+            
+
+        }
+    </style>
+
+</head>
+    <body>
+        <h1>
+            Signup
+        </h1>
+        <form method="POST">
+            <div class="inputData">
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username" value='{{username}}' required />
+                <span class="error">{{username_error}}</span>
+            </div>
+                
+            <div class="inputData">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required/>
+                <span class="error">{{password_error}}</span>
+            </div>
+            <div class="inputData">
+                <label for="verify-password">Verify Password</label>
+                <input id="verify-password" type="password" name="verify-password" />
+                <span class="error">{{verifyPassword_error}}</span>
+            </div>
+            <div class="inputData">
+                <label for="email">Email (optional)</label>
+                <input id="email" type="text" name="email" />
+                <span class="error">{{email_error}}</span>
+            </div>
+            <input type="submit" value="Validate" />
+                
+           
+        </form>
+    </body>
+</html>
