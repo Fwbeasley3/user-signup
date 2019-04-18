@@ -10,24 +10,28 @@ app.config['DEBUG'] = True
 def index():
     return render_template('signup.html')
 
+def emptyField(str):    #check empty str
+    if str !="":
+        return True
+    else:
+        return False
 
 
 
-
-def isLength(length):
+def isLength(length):               #check length of str btw 3 and 20 chr
     if len(length) <=2 or len(length) >=21:
        return True
     else:
         return False
 
-def passMatch(p1,p2):
+def passMatch(p1,p2):     #validate password and verify password fields match
     if p1!=p2:
         return True
     else:
         return False
 
 
-def valid_email(val):
+def valid_email(val):                                                             #validat email with regular expression
     valid_email = re.compile("[a-zA-Z0-9_]+\.?[a-zA-Z0-9_]+@[a-z]+\.[a-z]+")
     if valid_email.match(val):
         return True
@@ -51,7 +55,9 @@ def validate():
     email_error=""
 
 
-    if  isLength(username)== True:                             #check length(username)
+  
+
+    if  isLength(username)== True:                             
         username_error='Username must be between 3 and 20 characters'
         username=''
     elif " " in username:
@@ -68,23 +74,24 @@ def validate():
     if passMatch(password,verifyPassword)==True:  
         verifyPassword_error='Passwords do not match'
         verifyPassword = ''
-                                                                
-
-        
-
-    
        
+    
+    if emptyField(email)==True:
+        if isLength(email)==True:
+            email_error="Email must be between 3 and 20 characters"
+            email = " "
+        elif " " in email:
+            email_error="Email must not have any spaces."
+            email=''
+        elif not valid_email(email):
+            email_error="Enter valid email"
+            email=''
+   
+
+
+
+  
  
-                               
-    
-   
-
-
-
-
-    
-   
-
 
 
     if not username_error and not password_error and not verifyPassword_error and not email_error:
@@ -106,6 +113,26 @@ def welcome():
     return render_template('welcome.html',username=username)
         
 
+app.run()
+                                                                
+
+        
+
+    
+       
+ 
+                               
+    
+   
+
+
+
+
+    
+   
+
+
+
 
 
 
@@ -118,6 +145,3 @@ def welcome():
 
     
 
-
-
-app.run()
